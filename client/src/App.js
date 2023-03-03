@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 
+import { preview } from "./assets";
+import './App.css'
+import Loader from "./components/Loader";
 function App() {
+//Animation for  button
+  const[generatingImg, setGeneratinImg] = useState(false);
+
+
+
   const [imageUrl, setImageUrl] = useState("");
   const [prompt, setPrompt] = useState("")
 
@@ -8,23 +16,17 @@ function App() {
     setPrompt(event.target.value);
   };
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await fetch("http://localhost:8000/");
-  //     const jsonData = await response.json();
-  //     setImageUrl(jsonData.data);
-  //   }
-  //   fetchData();
-  // }, []);
-
-
   // const handleClick = async() => {
   //   const response = await fetch("http://localhost:8000/");
   //   const jsonData = await response.json();
   //   setImageUrl(jsonData.data)
   // }
+
+
 const handleGenerateImage = async () =>{
   try{
+    setGeneratinImg(true);
+   
     const response = await fetch("http://localhost:8000",{
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -32,7 +34,8 @@ const handleGenerateImage = async () =>{
     });
     const data = await response.json();
     setImageUrl(data.imageUrl);
-    console.log(data)
+    setGeneratinImg(false);
+   
 
 
   }catch(error){
@@ -42,21 +45,31 @@ const handleGenerateImage = async () =>{
 
 
   return (
-    <div>
-      <h1>Generated Image:</h1>
-      {imageUrl && (
-        <img src={imageUrl} alt="Generated Image" width="512" height="512" />
-      )}
-      <label htmlFor="promptInput">Enter Prompt:</label>
+    <div className="prompt-div">
+        <p>Transform your ideas into images with DALL-E's image generation</p>
+   
+      
+      <div className="input-div">
       <input
-        type="text"
-        id = "promptInput"
-        name="promptInput"
-        value={prompt}
+      type="text"
+      required
+      id = "promptInput"
+      name="promptInput"
+      value={prompt}
+      placeholder="A miniature city with people 3d rendered photo realistic"
+      onChange={handlePromptChange}
+    ></input>
+    <button type="button" onClick={handleGenerateImage}>{generatingImg? "Generating....": "Generate Image"}</button>
+      </div>
         
-        onChange={handlePromptChange}
-      ></input>
-      <button type="button" onClick={handleGenerateImage}>Generate Image</button>
+      {imageUrl ? (
+        <img src={imageUrl} alt="Generated Image" width="512" height="512" />
+      ):(
+        <img src={preview}></img>
+      )}{
+        generatingImg && (<div className="loader"> <Loader/> </div>)
+      }
+      
     </div>
   );
 }
