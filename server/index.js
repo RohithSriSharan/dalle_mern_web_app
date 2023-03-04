@@ -20,6 +20,10 @@ const configuration = new Configuration({
 
   const openai = new OpenAIApi(configuration)
 
+app.get('/', (req, res) => {
+  res.send("Hello from server..!")
+})
+
 // Define a route that sends data
 app.post("/", async (req, res) => {
     console.log(req.body)

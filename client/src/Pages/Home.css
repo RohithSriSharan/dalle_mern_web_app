@@ -1,0 +1,108 @@
+.prompt-div{
+    display: flex; 
+    flex-direction: column;
+    padding:30px ;
+    justify-content: center;
+    align-items: center;
+}
+
+.prompt-div p{
+    display: flex;
+    color: rgba(99, 92, 92, 0.932);
+    font-size: large;
+    margin-left: -830px;
+
+}
+
+.input-div input{
+   display: inline-block;
+    width: 1200px;
+    height: 40px;
+    border: 1px solid;
+    border-radius: 5px;
+ 
+
+}
+
+.input-div button{
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid;
+    background-color: rgb(34, 167, 34);
+    color: white;
+    margin-left: 10px;
+    
+}
+
+
+.prompt-div img{
+    height: 500px;
+    width: 500px;
+    margin-top: 20px;
+    border-radius: 2%;
+}
+.prompt-div img:hover{
+    box-shadow: 4px 6px 20px 0px black;
+
+}
+
+
+.loader{
+    display: flex;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+.community{
+   
+    border: 1px solid;
+    display: flex;
+    position: absolute;
+    top:0;
+    right:0;
+    margin-right: 10px;
+    margin-top: 5px;
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid;
+    background-color: rgb(34, 52, 167);
+    color: white;
+    justify-content: center;
+    align-items: center;
+ 
+}
+
+
+
+.share-download{
+    display: block;
+ 
+   
+}
+
+
+
+
+.share-download button{
+    display: block;
+    width: 500px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid;
+    background-color: rgb(34, 167, 34);
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+  
+    
+}
+
