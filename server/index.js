@@ -3,6 +3,12 @@ require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const  {Configuration, OpenAIApi} = require('openai');
+const { Post } = require('./mongodb/models/Post');
+const mongoose = require('mongoose')
+const connectDB = require('./mongodb/Connect');
+const cloudinary = require('cloudinary').v2;
+
+// const postroute = require('./postRoute')
 
 // Create an instance of the express server
 const app = express();
@@ -13,12 +19,23 @@ app.use(cors());
 // Parse incoming requests with JSON payloads
 app.use(express.json());
 
+
+// Configuration 
+// Configuration 
+cloudinary.config({
+  cloud_name: "dclst2xhs",
+  api_key: "349949736498457",
+  api_secret: "yeEUpgcTkMF59An1V5Ta03_2o7o"
+});
+
 //api configuration
-const configuration = new Configuration({
+const openaiConfig = new Configuration({
     apiKey:process.env.OPEN_AI_KEY
   })
 
-  const openai = new OpenAIApi(configuration)
+const openai = new OpenAIApi(openaiConfig)
+
+// app.use('/api/post', postRoute)
 
 app.get('/', (req, res) => {
   res.send("Hello from server..!")
@@ -42,10 +59,49 @@ app.post("/", async (req, res) => {
       console.error(error);
       res.status(500).json({ error: "Failed to generate image" });
     }
-  });
+});
+
+
+app.post('/api/post', async (req,res) => {
+    try{
+        const { prompt, imageUrl } = req.body;
+        const photoUrl = await cloudinary.uploader.upload(imageUrl);
+        console.log(Post)
+        const newPost = await Post.create({
+            prompt,
+            imageUrl: photoUrl.secure_url,
+        });
+        res.status(201).json({ success: true, data: newPost });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ 
+            success: false,
+            message: 'Unable to create a new post.' 
+        });
+    }
+});
+
+app.get('/api/post', async(req, res) => {
+    try{
+        const posts = await Post.find({});
+        console.log(posts)
+        res.status(200).json({success:true, data: posts});
+    }catch(err){
+        console.log(err)
+        res
+        .status(500)
+        .json({ success: false, message: "Unable to get posts." });
+  
+    }
+});
 
 // Start the server
 const port = 8000;
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
-});
+try{
+    connectDB("mongodb+srv://admin-rohith121:test123@cluster0.qtpj3sm.mongodb.net/?retryWrites=true&w=majority");
+    app.listen(port, () => {
+        console.log(`Server started on port ${port}`);
+    });
+} catch (err) {
+    console.log(err);
+}
