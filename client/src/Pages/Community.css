@@ -1,4 +1,87 @@
-.community-posts{
-    width: 300px;
-    height: 300px;
+
+ .community-posts{
+   display: grid;
+   grid-template-columns: repeat(1,1fr);
+ 
+   margin: 2%;
+  
+ }
+
+.community-posts ul{
+  display: flex;
+  flex-direction: column-reverse;
 }
+
+.community-posts ul li{
+ 
+  width: 97%;
+  margin-bottom: 2%;
+ border-radius: 10px;
+  overflow: hidden;
+}
+
+
+
+.card-info{
+   display: none;
+}
+
+.community-posts ul li:hover .card-info{
+   display: flex;
+   position: relative  ;
+
+   background-color: rgba(210, 200, 219, 0.546);
+   margin-top: -100px;
+   height: 100px;
+   width: 100%;
+   
+
+
+}
+
+.card-info :nth-child(1){
+   flex: 1;
+  
+}
+.card-info :nth-child(2){
+scale: 2.5;
+margin-right: 5%;
+
+}
+
+
+
+
+ @media screen and (min-width: 768px) {
+ 
+   
+    .community-posts{
+
+      display: grid;
+      padding: 2%;
+
+     
+   
+    }
+   
+    .community-posts ul {
+      display: grid;
+    
+
+      grid-template-columns: repeat(3,1fr);
+ 
+    }
+   
+
+   
+  
+  
+
+  
+
+
+    
+
+
+
+ }

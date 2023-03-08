@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react'
+import FileSaver from 'file-saver'
+import { IoMdDownload } from 'react-icons/io';
 
 import './Community.css'
 const Community = () => {
@@ -18,16 +20,26 @@ const Community = () => {
     fetchPosts();
   }, []);
   
+  const handlDownload = (url, text) =>{
+    FileSaver.saveAs(url, `${text}.png`)
+  }
 
 
   
   return (
-    <div className='community-posts'>
-    <ul>
+    <div className='community-posts '>
+    <ul className=' ' >
       {posts.map((post) =>(
-        <li>
-        <h2>{post.prompt}</h2>
-        <img src={post.imageUrl} alt={post.promt}></img>
+        <li >
+          
+          <img src={post.imageUrl} alt={post.promt} className='' ></img>
+          
+          <div className='card-info'>
+            <h2 >{post.prompt} </h2> 
+            <button  className='image-download' onClick={() => handlDownload(post.imageUrl, post._id)}><IoMdDownload/></button>
+          </div>
+        
+        
         </li>
         
       ))}

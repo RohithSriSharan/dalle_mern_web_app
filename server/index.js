@@ -23,9 +23,9 @@ app.use(express.json());
 // Configuration 
 // Configuration 
 cloudinary.config({
-  cloud_name: "dclst2xhs",
-  api_key: "349949736498457",
-  api_secret: "yeEUpgcTkMF59An1V5Ta03_2o7o"
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_KEY,
+  api_secret: process.env.CLOUD_SECRET
 });
 
 //api configuration
@@ -35,7 +35,7 @@ const openaiConfig = new Configuration({
 
 const openai = new OpenAIApi(openaiConfig)
 
-// app.use('/api/post', postRoute)
+
 
 app.get('/', (req, res) => {
   res.send("Hello from server..!")
@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 
 // Define a route that sends data
 app.post("/", async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     try {
       const { prompt } = req.body;
       const response = await openai.createImage({
@@ -54,7 +54,7 @@ app.post("/", async (req, res) => {
       });
       const imageUrl = response.data.data[0].url;
       res.json({imageUrl });
-      console.log(imageUrl)
+      // console.log(imageUrl)
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Failed to generate image" });
@@ -66,7 +66,7 @@ app.post('/api/post', async (req,res) => {
     try{
         const { prompt, imageUrl } = req.body;
         const photoUrl = await cloudinary.uploader.upload(imageUrl);
-        console.log(Post)
+        // console.log(photoUrl)
         const newPost = await Post.create({
             prompt,
             imageUrl: photoUrl.secure_url,
@@ -84,7 +84,7 @@ app.post('/api/post', async (req,res) => {
 app.get('/api/post', async(req, res) => {
     try{
         const posts = await Post.find({});
-        console.log(posts)
+        // console.log(posts)
         res.status(200).json({success:true, data: posts});
     }catch(err){
         console.log(err)
@@ -95,10 +95,19 @@ app.get('/api/post', async(req, res) => {
     }
 });
 
+app.post('/download', async(req,res) => {
+  const {imageUrl} = req.body
+  const cloudUrl = await cloudinary.uploader.upload(imageUrl);
+  res.send(cloudUrl)
+  // console.log(cloudUrl)
+})
+
+
+
 // Start the server
 const port = 8000;
 try{
-    connectDB("mongodb+srv://admin-rohith121:test123@cluster0.qtpj3sm.mongodb.net/?retryWrites=true&w=majority");
+    connectDB(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORd}@cluster0.qtpj3sm.mongodb.net/?retryWrites=true&w=majority`);
     app.listen(port, () => {
         console.log(`Server started on port ${port}`);
     });
