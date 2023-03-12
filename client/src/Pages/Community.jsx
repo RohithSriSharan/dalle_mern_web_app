@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import FileSaver from 'file-saver'
 import { IoMdDownload } from 'react-icons/io';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import './Community.css'
 const Community = () => {
@@ -27,10 +28,15 @@ const Community = () => {
 
   
   return (
-    <div className='community-posts '>
+    <motion.div className='community-posts '>
+
     <ul className=' ' >
+    <AnimatePresence>
       {posts.map((post) =>(
-        <li >
+        <motion.li initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+      
+        transition={{ duration: 0.5 }}>
           
           <img src={post.imageUrl} alt={post.promt} className='' ></img>
           
@@ -40,12 +46,12 @@ const Community = () => {
           </div>
         
         
-        </li>
+        </motion.li>
         
       ))}
-    
+      </AnimatePresence>
     </ul>
-    </div>
+    </motion.div>
   )
 }
 

@@ -6,6 +6,8 @@ import Loader from "../components/Loader";
 import FileSaver from "file-saver";
 import { MdSend } from 'react-icons/md';
 import { FaHourglassEnd } from 'react-icons/fa';
+import { motion } from 'framer-motion'
+
 
 function Home() {
   const [generatingImg, setGeneratingImg] = useState(false);
@@ -77,18 +79,31 @@ function Home() {
   
 
   return (
-    <div className="home">
+    <motion.div className="home"
+    
+    >
+      
       <Link to="/community/posts">
-        <button type="button" className="community-button">
+        <motion.button
+        initial={{ opacity: 0, y:-100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5 }}
+        type="button" className="community-button">
           Community
-        </button>
+        </motion.button>
       </Link>
 
-      <p>Transform your ideas into images with DALL-E's image generation</p>
+      <motion.p 
+        initial={{ opacity: 0, x:-150 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.5 }}
+      >Transform your ideas into images with DALL-E's image generation</motion.p>
 
-      <div className="input-div ">
+      <motion.div className="input-div ">
         
-        <input
+        <motion.input initial={{ opacity: 0, x:-100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.5 }}
           type="text"
           required
           id="promptInput"
@@ -97,15 +112,26 @@ function Home() {
           placeholder="A miniature city with people 3d rendered photo realistic"
           onChange={handlePromptChange}
         />
-        <button type="button" className="text-button" onClick={handleGenerateImage}>
+        <motion.button
+
+        initial={{ opacity: 0, x:50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+        
+        type="button" className="text-button" onClick={handleGenerateImage}>
           {generatingImg ? "Generating...." : "Generate Image"}
 
-        </button>
-        <button type="button" className="icon-button" onClick={handleGenerateImage}>
+        </motion.button>
+        <motion.button
+        initial={{ opacity: 0, x:50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+        
+        type="button" className="icon-button" onClick={handleGenerateImage}>
           {generatingImg ? <FaHourglassEnd/>: <MdSend/>}
           
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
       <div className="ai-image"></div>
 
@@ -124,17 +150,28 @@ function Home() {
       <div className="bottom-buttons">
         {share && (
           <div className="share-download">
-            <button className="share-button" onClick={handleShare}>
+            <motion.button
+            initial={{ opacity: 0, x:50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.5 }}
+            
+            className="share-button" onClick={handleShare}>
               Share to community
-            </button>
-            <button onClick={handledownloadImage} className="download-button">{downloading?"Downloading...": "Download Image"}</button>
+            </motion.button>
+            
+            <motion.button
+            
+            initial={{ opacity: 0, x:-50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5 }}
+            onClick={handledownloadImage} className="download-button">{downloading?"Downloading...": "Download Image"}</motion.button>
             
           </div>
         )}
       </div>
       
       </div>
-    </div>
+    </motion.div>
   );
 }
 
