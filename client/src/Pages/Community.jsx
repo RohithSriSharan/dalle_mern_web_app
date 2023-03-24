@@ -10,7 +10,7 @@ const Community = () => {
   useEffect(() => {
     const fetchPosts = async () =>{
       try{
-        const response = await fetch('http://localhost:8000/api/post');
+        const response = await fetch('https://ada-52ha.onrender.com/api/post');
         const data = await response.json();
         setPosts(data.data);
 

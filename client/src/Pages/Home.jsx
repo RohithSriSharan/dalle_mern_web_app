@@ -24,7 +24,7 @@ function Home() {
     try {
       setGeneratingImg(true);
 
-      const response = await fetch("http://localhost:8000", {
+      const response = await fetch("https://ada-52ha.onrender.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
@@ -43,7 +43,7 @@ function Home() {
 
     if (prompt && imageUrl) {
       try {
-        const response = await fetch("http://localhost:8000/api/post", {
+        const response = await fetch("https://ada-52ha.onrender.com/api/post", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +65,7 @@ function Home() {
   const handledownloadImage = async(e) => {
     e.preventDefault();
     setDownloading(true);
-    const downloadResponse = await fetch("http://localhost:8000/download", {
+    const downloadResponse = await fetch("https://ada-52ha.onrender.com/download", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
