@@ -28,7 +28,9 @@ function Home() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
+       
       });
+      console.log(prompt)
       const data = await response.json();
       setImageUrl(data.imageUrl);
       setGeneratingImg(false);

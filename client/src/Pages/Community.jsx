@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import FileSaver from 'file-saver'
 import { IoMdDownload } from 'react-icons/io';
 import { AnimatePresence, motion } from 'framer-motion';
-
+// Community page
 import './Community.css'
 const Community = () => {
   const[posts, setPosts] = useState([]);
