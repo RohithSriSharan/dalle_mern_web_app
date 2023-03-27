@@ -38,10 +38,9 @@ To install the app, follow these steps:
 5. Navigate to http://localhost:3000/ in your browser to view the app.
 
 Front-end  
-React: a JavaScript library for building user interfaces.  
-Axios: a library for making HTTP requests.  
-Styled Components: a library for styling React components.  
+    React: a JavaScript library for building user interfaces.  
+    Styled Components: a library for styling React components.  
 Back-end  
-Express: a web framework for Node.js.  
-Mongoose: an Object-Document Mapping (ODM) library for MongoDB.  
+    Express: a web framework for Node.js.  
+    MongoDB Atlas: an Object-Document Mapping (ODM) library for MongoDB.  
 DALL-E API: an API that provides access to the DALL-E neural network.  
