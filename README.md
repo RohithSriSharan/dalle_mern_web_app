@@ -40,7 +40,11 @@ To install the app, follow these steps:
 Front-end  
     React: a JavaScript library for building user interfaces.  
     Styled Components: a library for styling React components.  
+    
+    
 Back-end  
     Express: a web framework for Node.js.  
     MongoDB Atlas: an Object-Document Mapping (ODM) library for MongoDB.  
+    
+    
 DALL-E API: an API that provides access to the DALL-E neural network.  
