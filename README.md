@@ -21,7 +21,7 @@ To install the app, follow these steps:
     ```
     cd client  
     npm install  
-    cd ..  
+    cd ..  (or open a different terminal)
     cd server  
     npm install  
     ```
@@ -36,12 +36,12 @@ To install the app, follow these steps:
     npm start  
     ```
 5. Navigate to http://localhost:3000/ in your browser to view the app.
-##
-Front-end
-React: a JavaScript library for building user interfaces.
-Axios: a library for making HTTP requests.
-Styled Components: a library for styling React components.
-Back-end
-Express: a web framework for Node.js.
-Mongoose: an Object-Document Mapping (ODM) library for MongoDB.
-DALL-E API: an API that provides access to the DALL-E neural network.
+
+Front-end  
+React: a JavaScript library for building user interfaces.  
+Axios: a library for making HTTP requests.  
+Styled Components: a library for styling React components.  
+Back-end  
+Express: a web framework for Node.js.  
+Mongoose: an Object-Document Mapping (ODM) library for MongoDB.  
+DALL-E API: an API that provides access to the DALL-E neural network.  
