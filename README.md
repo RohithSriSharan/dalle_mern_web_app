@@ -37,14 +37,16 @@ To install the app, follow these steps:
     ```
 5. Navigate to http://localhost:3000/ in your browser to view the app.
 
-Front-end  
-    React: a JavaScript library for building user interfaces.  
-    Styled Components: a library for styling React components.  
+### Front-end  
+    1. React: a JavaScript library for building user interfaces.  
+    2. Styled Components: a library for styling React components.  
     
     
-Back-end  
-    Express: a web framework for Node.js.  
-    MongoDB Atlas: an Object-Document Mapping (ODM) library for MongoDB.  
+### Back-end  
+    1. Express: a web framework for Node.js.  
+    2. MongoDB Atlas: an Object-Document Mapping (ODM) library for MongoDB.  
+    3. Cloudianry: cloud-based media management platform   
     
     
-DALL-E API: an API that provides access to the DALL-E neural network.  
+### DALL-E API
+An API that provides access to the DALL-E neural network.  
